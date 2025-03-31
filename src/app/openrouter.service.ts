@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class OpenRouterService {
   private apiUrl = 'https://openrouter.ai/api/v1/chat/completions';
-  private apiKey = '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';
+  private apiKey = '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';
   private conversationHistory: { role: string; content: string }[] = [];
   private modelName = 'Daizy'; // Custom display name
 
