@@ -1,0 +1,35 @@
+<!-- <div class="chat-container">
+    <input [(ngModel)]="userInput" placeholder="Ask something..." />
+    <button (click)="sendMessage()">Send</button>
+  
+    <div *ngIf="loading" class="loading">Loading...</div>
+    
+    <div *ngIf="responseText">
+      <p>{{ responseText }}</p>
+    </div>
+  
+    <div *ngIf="codeBlocks.length">
+      <h3>Code Snippets:</h3>
+      <pre *ngFor="let code of codeBlocks"><code>{{ code }}</code></pre>
+    </div>
+  </div> -->
+
+  <div class="chat-container">
+    <div class="messages">
+      <div *ngFor="let message of messages" [ngClass]="{'user-message': message.sender === 'user', 'bot-message': message.sender === 'bot'}">
+        <p>{{ message.text }}</p>
+        
+        <div *ngIf="message.codeBlocks?.length">
+          <pre *ngFor="let code of message.codeBlocks"><code>{{ code }}</code></pre>
+        </div>
+      </div>
+      
+      <div *ngIf="loading" class="loading">Thinking...</div>
+    </div>
+  
+    <div class="input-area">
+      <input [(ngModel)]="userInput" placeholder="Type your message..." />
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+  
