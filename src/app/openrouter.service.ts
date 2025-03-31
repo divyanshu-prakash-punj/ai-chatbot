@@ -2,15 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from '../environments/environment';
+
 
 @Injectable({ providedIn: 'root' })
 export class OpenRouterService {
   private apiUrl = 'https://openrouter.ai/api/v1/chat/completions';
-  private apiKey = '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';
+  private apiKey = environment.apiKey;
   private conversationHistory: { role: string; content: string }[] = [];
   private modelName = 'Daizy'; // Custom display name
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log(environment.apiKey); // Should log your API key from Netlify
+  }
 
   getChatResponse(prompt: string): Observable<{ text: string; codeBlocks: string[] }> {
     this.conversationHistory[0]={ 
